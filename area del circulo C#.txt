@@ -1,0 +1,22 @@
+using System;
+
+namespace pruebas
+{
+    internal class Program
+    {
+        public const double pi = 3.14159;
+        static void Main(string[] args)
+        {
+            double radio, res;
+          
+            
+            Console.WriteLine("engrese el radio del circulo: ");
+            radio = float.Parse(Console.ReadLine());
+            res = (Math.Pow(radio, 2))*pi;
+            Console.WriteLine("la area del circulo es: " + res);
+        
+
+
+        }
+    }
+}

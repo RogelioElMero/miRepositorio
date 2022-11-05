@@ -1,0 +1,47 @@
+using System;
+
+
+namespace pruebas
+{
+    internal class Program
+    {
+      
+        static void Main(string[] args)
+        {
+            double horas, sueldo, horax, salario, salariox, total, ult;
+            Console.WriteLine("ingrese las horas trabajadas: ");
+            horas = double.Parse(Console.ReadLine());
+            Console.WriteLine("ingrese el sueldo fijo: ");
+            sueldo = double.Parse(Console.ReadLine());
+            
+            if (horas<=35)
+            {
+                salario = (horas*sueldo);
+                salariox = 0;
+            }
+            else
+            {
+                horax = horas - 35;
+                salario = 35 * sueldo;
+                salariox = (horax * 1.5 * sueldo);
+            }
+
+            total = salario + salariox;
+
+            if (total>20000)
+            {
+                ult = total - (total*.16);
+            }
+            else
+            {
+                ult = total;
+            }
+
+            Console.WriteLine("el salario normal es de: "+salario);
+            Console.WriteLine("el salario extra es de: "+salariox);
+            Console.WriteLine("el salario total seria: $"+total+" sin impuestos");
+            Console.WriteLine("el pago a recibir es de: $"+ult);
+
+        }
+    }
+}

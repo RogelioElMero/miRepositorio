@@ -1,0 +1,24 @@
+using System;
+
+
+namespace pruebas
+{
+    internal class Program
+    {
+        public const double pi = 3.14159;
+        static void Main(string[] args)
+        {
+            float baset, alturat, rest;
+
+            Console.WriteLine("ingrese la base del triangulo");
+            baset = float.Parse(Console.ReadLine());
+            Console.WriteLine("ingrese la altura del triangulo");
+            alturat = float.Parse(Console.ReadLine());
+
+            rest = (baset * alturat) / 2;
+            Console.WriteLine("la area del triangulo es: "+rest);
+
+
+        }
+    }
+}

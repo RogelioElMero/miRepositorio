@@ -1,0 +1,261 @@
+using System;
+using System.Globalization;
+using System.Runtime.ExceptionServices;
+using System.Threading;
+
+
+namespace pruebas
+{
+    internal class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int lim, X = 0;
+            int  num1,num2,num3,num12,num22,num32,s1,s2,s3,total;
+            
+            string texto;
+            //matrices necesarias
+            int [] arrayDecifrado =
+            {    -3,1,7,  6,-2,-3,        2,3,-1  };
+
+            int[] arrayCifrado =
+                { 1, 2, 1 ,   0, -1, 3 ,   2, 1, 0  };
+
+
+            //solicita una cadena de texto y agrega los nuneros necesarios para ser multiplo de 3 
+            Console.WriteLine("ingrese al cadena de texto");
+            texto = Console.ReadLine();
+            lim = texto.Length;
+            if (lim !=0) {
+                if (lim % 3 == 1)
+                {
+                    texto = texto.Insert(lim, "  ");
+                    lim = texto.Length;
+                }
+                else if (lim % 3 == 2)
+                {
+                    texto = texto.Insert(lim, " ");
+                    lim = texto.Length;
+                }
+                else
+                {
+                    lim = texto.Length;
+                }
+            }
+            else
+            {
+                Console.WriteLine("no existe texto alguno");
+            }
+
+           // Console.WriteLine(lim%3);
+           //Console.WriteLine(texto);
+
+
+            //array que se usan para el codigo 
+                char[] arrayT = new char[lim];
+            char[] arrayT2 = new char[lim];
+                int[] arrayN = new int[lim];
+
+            int[] arrayAux = new int[lim];
+            int[] arrayAux2 = new int[lim];
+
+            //Console.WriteLine("el tamaño del arreglo va a ser de: "+(lim/3)*3);
+
+
+
+            //convierte la cadena de texto a un arreglo numerico con base la tabla dada en clase y lo almacena en arrayN
+
+            for (int i = 0; i <lim; i++)
+            {
+                arrayT[i]=char.Parse(texto.Substring(i,1));
+                //Console.WriteLine(texto.Substring(i,1));
+            }
+           
+            //Console.WriteLine("--");
+            
+            for (int i=0; i<arrayT.Length; i++)
+            {
+                
+                arrayN[i] =SAN(arrayT[i]);
+             // Console.WriteLine(arrayN[i]);
+            }
+
+
+
+            //foreach (var x in arrayN)
+            //{
+            //    Console.WriteLine(x);
+            //}
+
+
+
+
+
+
+
+
+
+            //encriptacion del array de numeros y agregarlos en arrayAux ya estando encriptado por la matriz
+            for (int i =0; i<arrayN.Length;i+=3)
+            {
+
+                for (int j =0; j<3;j++)
+                {
+                    num1 = arrayCifrado[j];
+                    num2 = arrayCifrado[j+3];
+                    num3 = arrayCifrado[j+6];
+                    num12 = arrayN[i];
+                    num22 = arrayN[i+1];
+                    num32 = arrayN[i+2];
+                    s1 = num1 * num12;
+
+                    s2 = num2 * num22;
+                    s3 = num3 * num32;
+                    total = s1 + s2 + s3;
+                    //Console.WriteLine(num1+" x "+num12);
+                    //Console.WriteLine(num2+" x "+num22);
+                    //Console.WriteLine(num3+" x "+num32);
+                    //Console.WriteLine("result: {0}",total);
+                    //Console.WriteLine(" ----- ");
+                    arrayAux[X]=total;
+                    if (X<arrayAux.Length)
+                    {
+                        X++;
+                    }
+
+                }
+                
+            }
+
+
+            //foreach (var x in arrayAux)
+            //{
+            //    Console.Write(x + " - ");
+            //}
+
+            Console.WriteLine("\ncadena de texto encriptada\n");
+
+
+            //mostrar la cadena que devuelve al estar encriptada esta cadena
+
+
+            for (int y =0; y<arrayAux2.Length;y++)
+            {
+                Console.Write(arrayAux[y]+" ");
+            }
+
+
+
+            Console.WriteLine("\n\ncadena de texto desencriptada \n");
+
+
+
+
+
+
+
+
+            //desencriptado del array de numeros encriptados previamente en arrayAux
+            X = 0;
+            for (int i = 0; i < arrayN.Length; i += 3)
+            {
+
+                for (int j = 0; j < 3; j++)
+                {
+                    num1 = arrayDecifrado[j];
+                    num2 = arrayDecifrado[j + 3];
+                    num3 = arrayDecifrado[j + 6];
+                    num12 = arrayAux[i];
+                    num22 = arrayAux[i + 1];
+                    num32 = arrayAux[i + 2];
+                    s1 = num1 * num12;
+                    s2 = num2 * num22;
+                    s3 = num3 * num32;
+                    total = (s1 + s2 + s3)/11;
+                    //Console.WriteLine(num1 + " x " + num12);
+                    //Console.WriteLine(num2 + " x " + num22);
+                    //Console.WriteLine(num3 + " x " + num32);
+                    //Console.WriteLine("result: {0}", total);
+                    //Console.WriteLine(" ----- ");
+                    arrayAux2[X] = total;
+                    if (X < arrayAux2.Length)
+                    {
+                        X++;
+                    }
+
+                }
+
+            }
+
+            //Console.WriteLine("\n---");
+
+
+            //foreach (var x in arrayAux2)
+            //{
+            //    Console.Write(x + " - ");
+            //}++++++++
+
+
+
+
+
+            //mostrar el mensaje desencriptado guardado en arrayAux2 
+            for (int i= 0; i<arrayAux2.Length;i++)
+            {
+                arrayT2[i] = NAS(arrayAux2[i]);
+
+
+            }
+
+            //Console.WriteLine("");
+
+            foreach (var x in arrayT2)
+            {
+                Console.Write(x);
+            }
+
+            Console.WriteLine("\n\n");
+
+            Console.ReadKey();
+
+
+        }
+
+
+
+
+        public static int SAN(char carac)
+        {
+            char[] abc = { ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.' };
+            int num=-1;
+            for (int j=0; j<abc.Length;j++)
+            {
+                if (carac.Equals(abc[j]))
+                {
+                    num=j;
+                }
+                
+            }
+            
+            
+            return num;
+        }
+
+        public static char NAS(int n)
+        {
+            char[] abc = { ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.' };
+            char s='#';
+
+            if (n < 30 && n > -1) {
+
+                s=abc[n];
+                
+            }
+
+            return s;
+        }
+
+
+    }
+}

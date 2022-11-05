@@ -1,0 +1,259 @@
+using System;
+using System.Dynamic;
+using System.Globalization;
+
+namespace pruebas
+{
+    internal class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int eleccion;
+            Console.WriteLine("ingrese un numero de una operacion la cual quiera realizar ");
+            Console.WriteLine("1- secuencia fibonacci");
+            Console.WriteLine("2- piramide de caracteres");
+            Console.WriteLine("3- operaciones basicas ");
+            eleccion=int.Parse( Console.ReadLine());
+
+            switch (eleccion)
+            {
+                case 1:
+                    int lim, num_n=0 ,num1, num2;
+                    Console.WriteLine("ingrese un numero al cual se aproxime la serie de fibonacci");
+                    lim =int.Parse(Console.ReadLine());
+                    num1 = 0;
+                    num2 = 1;
+                    if (lim<=0)
+                    {
+                        Console.WriteLine("la serie no va hacia abajo ");
+                    }
+                    else
+                    {
+                        if (lim>0)
+                        {
+                            Console.WriteLine(num1);
+                            if (lim>1)
+                            {
+                                Console.WriteLine(num2);
+                            }
+                        }
+                        while (num1<=lim && num2<=lim && num_n<=lim)
+                        {
+                            num_n = num1 + num2;
+                            if (num_n<=lim)
+                            {
+                                Console.WriteLine(num_n);
+                            }
+                            num1 = num2;
+                            num2 = num_n;
+
+                        }
+                    }
+                    break;
+                case 2:
+                    int nivel;
+                    char carac;
+
+                    Console.WriteLine("ingrese un numero para limiar los niveles: ");
+                    nivel = int.Parse(Console.ReadLine());
+                    Console.WriteLine("ingrese un solo caracter para haser la piramide: ");
+                    carac=char.Parse(Console.ReadLine());
+
+                    if (nivel<=0)
+                    {
+                        Console.WriteLine("no existe los niveles negativos y/o nivel cero");
+                    }
+                    else
+                    {
+                        for (int i =nivel;i>-1;i--)
+                        {
+                            for (int k =i; k>0;k--)
+                            {
+                                Console.Write(" ");
+                            }
+                            for (int j=0;j<nivel-i;j++ )
+                            {
+                                Console.Write(" "+carac);
+                            }
+                            Console.WriteLine();
+                        }
+                    }
+
+
+                    break;
+
+                case 3:
+
+                    int Selec;
+                   double n1, n2, total=0;
+
+                    Console.WriteLine("ingrese la operacion que quiera realizar ");
+                    Console.WriteLine("1- suma");
+                    Console.WriteLine("2- resta");
+                    Console.WriteLine("3- multiplicacion");
+                    Console.WriteLine("4- division");
+                    Console.WriteLine("5- potencia");
+                    Console.WriteLine("6- factorial");
+                    Selec=int.Parse(Console.ReadLine());
+
+                    switch (Selec)
+                    {
+                        case 1:
+                            int elecSuma;
+                            Console.WriteLine("ingrese el numero de variables a sumar: ");
+                            elecSuma = int.Parse(Console.ReadLine());
+                            if (elecSuma <= 1)
+                            {
+                                Console.WriteLine("la suma empieza apartir de 2 variables");
+                            }
+                            else
+                            {
+                                Console.WriteLine("ingrese el valor del primer numero: ");
+                                n1 = int.Parse(Console.ReadLine());
+                                for (int i = 0; i < elecSuma -1; i++)
+                                {
+                                    Console.WriteLine("ingrese el valor del siguiente numero: ");
+                                    n2 = int.Parse(Console.ReadLine());
+                                    total = total + n2;
+                                }
+                                total = total + n1;
+                                Console.WriteLine("el resultado es: " + total);
+                            }
+
+                            break;
+                        case 2:
+                            int elecResta;
+                            Console.WriteLine("ingrese el numero de variables a restar: ");
+                            elecResta = int.Parse(Console.ReadLine());
+                            if (elecResta <= 1)
+                            {
+                                Console.WriteLine("la resta empieza apartir de 2 variables");
+                            }
+                            else
+                            {
+                                Console.WriteLine("ingrese el valor del primer numero: ");
+                                n1 = int.Parse(Console.ReadLine());
+                                total = n1;
+                                for (int i =0; i < elecResta - 1; i++)
+                                {
+                                    Console.WriteLine("ingrese el valor del siguiente numero: ");
+                                    n2 = int.Parse(Console.ReadLine());
+                                    total = total - n2;
+                                }
+                                Console.WriteLine("el resultado es: " + total);
+
+                            }
+                            break;
+                        case 3:
+                            int elecMulti;
+                            Console.WriteLine("ingrese el numero de variables a multiplicar: ");
+                            elecMulti = int.Parse(Console.ReadLine());
+                            if (elecMulti <= 1)
+                            {
+                                Console.WriteLine("la multiplicacion empieza apartir de 2 variables");
+                            }
+                            else
+                            {
+                                num2 = 1;
+                                num1 = 1;
+                                Console.WriteLine("ingrese el valor del primer numero: ");
+                                total = 1;
+                                n1 = int.Parse(Console.ReadLine());
+                                for (int i = 0; i < elecMulti - 1; i++)
+                                {
+                                    Console.WriteLine("ingrese el valor del siguiente numero: ");
+                                    n2 = int.Parse(Console.ReadLine());
+                                    total = total * n2;
+                                }
+                                total = total * n1;
+                                Console.WriteLine("el resultado es: " + total);
+
+                            }
+                            break;
+                        case 4:
+                            int elecDivi;
+                            Console.WriteLine("ingrese el numero de variables a dividir: ");
+                            elecDivi = int.Parse(Console.ReadLine());
+                            if (elecDivi <= 1)
+                            {
+                                Console.WriteLine("la divicion empieza apartir de 2 variables");
+                            }
+                            else
+                            {
+                                Console.WriteLine("ingrese el valor del primer numero: ");
+                                n1 = int.Parse(Console.ReadLine());
+                                if (n1 == 0)
+                                {
+                                    Console.WriteLine("el cero no es un numero bueno para la division");
+                                    Console.WriteLine("el resultado es: " + total);
+
+                                }
+                                else
+                                {
+                                    total = n1;
+
+                                    for (int i = 0; i < elecDivi - 1; i++)
+                                    {
+                                        Console.WriteLine("ingrese el valor del siguiente numero: ");
+                                        n2 = int.Parse(Console.ReadLine());
+                                        if (n2 == 0)
+                                        {
+                                            Console.WriteLine("el cero no es un buen numero para dividir");
+
+                                        }
+                                        else
+                                        {
+                                            total = total / n2;
+                                        }
+
+                                    }
+                                    Console.WriteLine("el resultado es: " + total);
+                                }
+                            }
+
+
+
+                            break;
+                        case 5:
+
+                            Console.WriteLine("ingrese el numero a elevar: ");
+                            n1 = int.Parse(Console.ReadLine());
+                            Console.WriteLine("ingrese el numero al cual se elevara el anterior: ");
+                            n2= int.Parse(Console.ReadLine());
+
+                            total = Math.Pow(n1, n2);
+                            Console.WriteLine("el resultado es: "+total);
+
+                            break;
+                        case 6:
+                            int numN,res, factorial;
+                            Console.WriteLine("ingrese un numero: ");
+                            numN=int.Parse(Console.ReadLine());
+                            res = 1;
+                            for (int i=1; i<numN; i++)
+                            {
+                                factorial = res * i;
+                                res = res + factorial;
+                            }
+                            Console.WriteLine("el resultado es: "+res);
+                            break;
+
+                        default:
+
+                            Console.WriteLine("no coincide con ninguna opcion");
+                            break;
+                    }
+                    break;
+                default:
+                    Console.WriteLine("la eleccion no coincide con ninguna de las opciones");
+                    break;
+
+            }
+
+
+
+        }
+        
+    }
+}

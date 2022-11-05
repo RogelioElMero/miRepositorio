@@ -1,0 +1,218 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
+using System.Xml.Linq;
+
+namespace pruebas
+{
+    internal class Program
+    {
+        private static List<string> alumno = new List<string>();
+        static void Main(string[] args)
+        {
+            string eleccion;
+            float firmasMax, firmas;
+            float calificacionFinal, saber,aux, saberHacer, soc, adap, ext;
+
+
+            Console.WriteLine("calculadora de calificacion expres-----------------");
+            Console.WriteLine("ingrese las firmas maximas");
+            firmasMax = extraer();
+            do
+            {
+                calificacionFinal = 0; saber = 0; saberHacer = 0; soc = 0; adap = 0; ext=0;
+                alumno.Clear();
+                Console.WriteLine("ingrese las firmas obtenidas por el alumno: ");
+                firmas = extraer();
+
+
+                if (firmas >= regla3(firmasMax, 80, 100) && firmas<=firmasMax)
+                {
+                    Console.WriteLine("----------------saber--------------");
+                    mostrar("examen", 1);
+                    aux = regla3(extraer(), 40, 100);
+                    if (validar(aux, 40))
+                    {
+                        saber = aux;
+                    }
+                    else
+                    {
+                        saber = 0;
+                    }
+
+                  
+                    calf("saber", saber, 1);
+                }
+                else
+                {
+                    saber = 0;
+                    calf("saber", saber, 1);
+                }
+
+
+
+                Console.WriteLine("----------------saber hacer--------------");
+
+
+
+                mostrar("saber hacer", 1);
+                
+                aux = regla3(extraer(), 40, 100);
+                if (validar(aux, 40))
+                {
+                    saberHacer = aux;
+                }
+                else
+                {
+                    saberHacer = 0;
+                }
+                calf("saber hacer", saberHacer, 1);
+
+
+
+                Console.WriteLine("----------------ser--------------");
+
+
+
+                mostrar("ser socioafectivo", 2);
+                aux = regla3(extraer(), 5, 80);
+                if (validar(aux, 5))
+                {
+                    soc = aux;
+                }
+                else
+                {
+                    soc = 0;
+                }
+                calf("socio afectivo", soc, 1);
+
+
+
+                mostrar("adaptabilidad", 2);
+                aux = regla3(extraer(), 5, 40);
+                if (validar(aux, 5))
+                {
+                    adap = aux;
+                }
+                else
+                {
+                    adap = 0;
+                }
+                calf("adaptabilidad",adap,1);
+
+
+
+                Console.WriteLine("");
+                Console.WriteLine("ingrese la calficacion del extracurricular: ");
+                aux = regla3(extraer(),10,10);
+                if (validar(aux, 10))
+                {
+                    ext = aux;
+                }
+                else
+                {
+                    ext = 0;
+                }
+                calf("extracurricular",ext,1);
+
+
+
+                Console.WriteLine("");
+                calf("",0,2);
+
+
+
+                Console.WriteLine("");
+                calificacionFinal = (float)((saber + saberHacer + soc + adap + ext)*.1);
+                
+                if (calificacionFinal>7)
+                {
+                    Console.WriteLine("la calificacion final es: " + calificacionFinal+"  :D Aprovado");
+                }
+                else
+                {
+                    Console.WriteLine("la calificacion final es: " + calificacionFinal+" :'v reprovado");
+                }
+
+
+                Console.WriteLine("");
+                Console.WriteLine("quiere repetir la prueba desde alumno? (S) para repetir");
+                eleccion = Console.ReadLine();
+
+                Console.WriteLine("");
+                Console.WriteLine("");
+
+            } while (eleccion == "s" || eleccion == "S");
+
+            Console.WriteLine("hasta luego :D");
+
+        }
+
+
+        public static void mostrar(String mensaje, int valor)
+        {
+            String cadena1 = "ingrese el porecentaje del " + mensaje + ": ";
+            string cadena2 = "ingrese los puntos de " + mensaje + ": ";
+            if (valor == 1)
+            {
+                Console.WriteLine(cadena1);
+            }
+            else
+            {
+                Console.WriteLine(cadena2);
+            }
+        }
+
+
+        public static float extraer()
+        {
+            float valor;
+            valor = float.Parse(Console.ReadLine());
+
+            return valor;
+        }
+
+
+        public static float regla3(float v1, float v2, float v3)
+        {
+            float res;
+
+            return res = (v1 * v2) / v3;
+        }
+
+        public static Boolean validar(float v1, float v2)
+        {
+            Boolean valor=false;
+
+            if (v1<=v2)
+            { 
+                valor = true;
+            }
+
+
+            return valor;
+
+        }
+
+        public static void calf(String calificacion,float valor,int eleccion)
+        {
+            if (eleccion==1)
+            {
+                alumno.Add(calificacion + " : " + valor+"%");
+            }
+            else
+            {
+                foreach (var alm in alumno)
+                {
+                    Console.WriteLine(alm);
+                }
+            }
+            
+            
+        }
+
+
+    }
+}

@@ -1,0 +1,26 @@
+using System;
+
+
+namespace pruebas
+{
+    internal class Program
+    {
+        public const double CLts =7.75;
+        static void Main(string[] args)
+        {
+            double litrosAprox, km, costoGas,  pagarGas;
+
+            Console.WriteLine("ingrese el costo de la gasolina por litro: ");
+            costoGas=double.Parse(Console.ReadLine());
+
+            Console.WriteLine("ingrese el los kilometros de distancia que va a recorrer: ");
+            km = double.Parse(Console.ReadLine());
+
+            litrosAprox = km / CLts;
+            pagarGas = (litrosAprox*costoGas);
+
+            Console.WriteLine("costo del viaje: $"+pagarGas);
+            Console.WriteLine("los litros de gasolina serian: "+litrosAprox+"Lts");
+        }
+    }
+}

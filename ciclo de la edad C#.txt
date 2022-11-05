@@ -1,0 +1,54 @@
+using System;
+
+
+namespace pruebas
+{
+    internal class Program
+    {
+        public const double pi = 3.14159;
+        static void Main(string[] args)
+        {
+            int edad;
+            Console.WriteLine("ingrese su edad: ");
+            edad=int.Parse(Console.ReadLine());
+
+            if ( edad<3 && edad>0 )
+            {
+                Console.WriteLine("eres un Bebe ");
+            }
+            else if( edad>=3 && edad<10 )
+            {
+                Console.WriteLine("eres un Niño ");
+            }
+            else if (edad >= 10 && edad < 18)
+            {
+                Console.WriteLine("eres un Puberto ");
+            }
+            else if (edad >= 18 && edad < 30)
+            {
+                Console.WriteLine("eres un Joven ");
+            }
+            else if (edad >= 30 && edad < 40)
+            {
+                Console.WriteLine("eres un Chavo Ruko ");
+            }
+            else if (edad >= 40 && edad < 60)
+            {
+                Console.WriteLine("eres un Don ");
+            }
+            else if (edad >= 60 && edad < 80)
+            {
+                Console.WriteLine("eres un Señor ");
+            }
+            else if (edad >= 80)
+            {
+                Console.WriteLine("eres un Milagor");
+            }
+            else 
+            {
+                Console.WriteLine("DATO INVALIDO");
+            }
+
+        }
+    }
+}
