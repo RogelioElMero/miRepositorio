@@ -1,0 +1,63 @@
+using System;
+
+namespace arregloMenoraMayor
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int y,aux,a,b;
+            Console.Write("ingese el numero de posiciones del arreglo: ");
+            y = int.Parse(Console.ReadLine());
+
+            //Console.WriteLine(y);
+
+            Console.WriteLine("ingrese los datos para llenar el arreglo ");
+
+            int[] x = new int[y];
+
+            for (int i = 0; i < y; i++)
+            {
+                Console.Write("ingese el dato de la posicion " + i + " :");
+                x[i] = int.Parse(Console.ReadLine());
+               //Console.WriteLine(x[i]);
+            }
+
+            for (int j = 0; j < y; j++)
+            {
+                //Console.WriteLine(j);
+                for (int k = 0; k < y; k++)
+                {
+                    //Console.WriteLine(k);
+
+
+                    if (k < y-1)
+                    {
+                        a = x[k];
+                        b = x[k + 1];
+
+                        if (a > b)
+                        {
+                            aux = x[k + 1];
+                            x[k + 1] = x[k];
+                            x[k] = aux;
+                        }
+                     
+                    }
+                    
+
+
+                }
+            }
+
+            Console.WriteLine("el orden correcto del codigo es :");
+            for (int l = 0; l < x.Length; l++)
+            {
+                Console.WriteLine("valor del la posicion " + l + " :  " + x[l]);
+
+            }
+
+
+        }
+    }
+}

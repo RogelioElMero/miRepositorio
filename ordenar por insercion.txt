@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Xml.Linq;
+
+namespace pruebas
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int aux, ubic;
+            int[] x = { 5, 9, 2, 0, 4, 10 };
+
+            for (int i = 0; i < x.Length; i++)
+            {
+                ubic = i;
+                aux = x[i];
+                //foreach (int array in x)
+                //{
+                //    Console.Write(array + " ");
+
+                //}
+                //Console.WriteLine("" + i);
+
+                while (ubic>0 && x[ubic - 1] > aux )
+                {
+                    x[ubic] = x[ubic - 1];
+                    ubic--;
+                    //foreach (int array in x)
+                    //{
+                    //    Console.Write(array + " ");
+
+                    //}
+                    //Console.WriteLine("");
+                }
+                x[ubic] = aux;
+
+
+            }
+
+
+            foreach (int array in x)
+            {
+                Console.Write(array+" ");
+
+            }
+            
+
+        }
+
+    }
+}
